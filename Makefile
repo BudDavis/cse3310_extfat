@@ -10,7 +10,7 @@
 #
 # No intermediate .o files or libraries are created
 
-CPPFLAGS=-Wall -Wextra -O0 -std=c17 -g3 -fsanitize=address
+CPPFLAGS=-Wall -Wextra -O0 -std=gnu17 -g3 -fsanitize=address
 # note address sanitizer "-fsanitize=address" is new. it can be
 # removed from the makefile if it causes problems.
 
@@ -31,6 +31,9 @@ unit_tests: munit_example
 munit_example:unit_tests/munit/example.c
 	${CC} ${CPPFLAGS}  unit_tests/munit/munit.c -I./unit_tests/munit/ ${CPPINCS} -o $@ $^
 
+system_tests: extfat
+	bash tests/system_tests.bash
+	
 # requirements tests
 
 
